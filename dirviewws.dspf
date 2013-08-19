@@ -1,0 +1,46 @@
+     a*--------------------------------------------------------------------
+     a* screen for displaying an IFS dir with the option of returning a selected filename
+     a*
+     a*--------------------------------------------------------------------
+     a                                      INDARA
+     a          R SFL1                      SFL
+     a            OPTION         1A  B  7  2COLOR(PNK) VALUES('1' '5' ' ')
+     a                                      DSPATR(UL)
+     a            WSIFSFILE     60   O  7  6COLOR(PNK)
+     a            WSOBJTYPE     12   O  7 68COLOR(PNK)
+     a            LONGFNAME    100   H
+     a
+     a          R SFL1CTL                   SFLCTL(SFL1)
+     a                                      CA03(03)
+     a                                      CA12(03)
+     a                                      SFLPAG(15)
+     a                                      SFLSIZ(500)
+     a                                      OVERLAY
+     a  35                                  SFLDSP
+     a N30                                  SFLDSPCTL
+     a  30                                  SFLCLR
+     a N90                                  SFLEND(*MORE)
+     a*N49                                  PAGEDOWN(26)
+     a*N50                                  PAGEUP(25)
+     a            POSRRN         4S 0H      SFLRCDNBR(CURSOR)
+     a                                  3  2'IFS directory: ' COLOR(WHT)
+     a            WSIFSDIR      40   O  3 18
+     a                                  4  2'Options: 1=Select 5=Display'
+     a                                       COLOR(TRQ)
+     a                                  5  2'Opt' COLOR(WHT)
+     a                                  5  6'IFS file' COLOR(WHT)
+     a                                  5 68'Obj type' COLOR(WHT)
+     a
+     a                                  1  2'COMPANY'
+     a                                  1 70DATE(*YY)
+     a                                      EDTWRD('  0 -  -  ')
+     a                                  1 28'Select IFS file' COLOR(PNK)
+     a                                  1 61TIME
+     a                                  2  2'dir_view'
+     a                                  2 12USER
+     a
+     a          R FKEYS
+     a  60        MSG           78A  O 23  2
+     a  20                                  COLOR(RED)
+     a N20                                  COLOR(WHT)
+     a                                 24 10'F12=Previous' COLOR(TRQ)
